@@ -37,7 +37,7 @@ import { ExtractUserDataFromRequest } from '../../../user/api/auth/decorators/pa
 /*SA-контроллер для блогов.*/
 @ApiTags(SETTINGS.BLOGS_API_TAG)
 @Controller(SETTINGS.BLOGS_SA_REFIX)
-export class BlogsSaController {
+export class BlogsSAController {
   public constructor(
     private readonly blogsService: BlogsPostgresqlService,
     private readonly blogsQueryService: BlogsPostgresqlQueryService,

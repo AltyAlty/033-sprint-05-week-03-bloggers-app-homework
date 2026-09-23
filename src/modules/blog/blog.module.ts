@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { PassportModule } from '@nestjs/passport';
 import { BlogsController } from './api/blogs/blogs.controller';
-import { BlogsSaController } from './api/blogs/blogs-sa.controller';
+import { BlogsSAController } from './api/blogs/blogs-sa.controller';
 import { CommentsController } from './api/comments/comments.controller';
 import { PostsController } from './api/posts/posts.controller';
 import { BlogsService } from './application/blogs/blogs.service';
@@ -49,7 +49,7 @@ import { PostLikeData, PostLikeDataSchema } from './domain/posts/post-like-data.
     PassportModule.register({ defaultStrategy: 'access-jwt' }),
     UserModule,
   ],
-  controllers: [BlogsController, BlogsSaController, PostsController, CommentsController],
+  controllers: [BlogsController, BlogsSAController, PostsController, CommentsController],
   providers: [
     BlogsService,
     BlogsPostgresqlService,

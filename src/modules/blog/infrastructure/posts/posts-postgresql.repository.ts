@@ -79,11 +79,10 @@ export class PostsPostgresqlRepository {
 
   /*Метод для изменения количества лайков и дизлайков у поста по ID в БД.*/
   public async updatePostLikesCountById(id: string, dto: { likesCount: number; dislikesCount: number }): Promise<void> {
-    await this.dataSource.query(`UPDATE posts SET likes_count = $1, dislikes_count = $2 WHERE id = $3`, [
-      dto.likesCount,
-      dto.dislikesCount,
-      id,
-    ]);
+    await this.dataSource.query(
+      `UPDATE posts SET likes_count = likes_count + $1, dislikes_count = dislikes_count + $2 WHERE id = $3`,
+      [dto.likesCount, dto.dislikesCount, id]
+    );
   }
 
   /*Метод для изменения данных о лайке поста по ID поста и ID пользователя в БД.*/

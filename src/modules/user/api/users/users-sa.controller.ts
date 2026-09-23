@@ -33,7 +33,7 @@ export class UsersSAController {
 
   /*002. GET-запрос по поиску пользователей с пагинацией, используя query-параметры.*/
   @UsersControllerSwaggerDecorators.getUserList
-  @Get(SETTINGS.USERS_SA_DELETE_USER_BY_ID_PATH)
+  @Get(SETTINGS.USERS_SA_GET_USER_LIST_PATH)
   @HttpCode(HttpStatus.OK)
   public async getUserList(
     @Query() query: GetUserListQueryInputDTO

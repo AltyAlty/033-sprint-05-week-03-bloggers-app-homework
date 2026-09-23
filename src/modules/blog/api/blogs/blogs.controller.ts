@@ -1,4 +1,4 @@
-import { Controller, Get, HttpCode, HttpStatus, Param, Query } from '@nestjs/common';
+import { Controller, Get, HttpCode, HttpStatus, Param, Query, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { BlogsPostgresqlQueryService } from '../../application/blogs/blogs-postgresql.query-service';
 import { PostsPostgresqlQueryService } from '../../application/posts/posts-postgresql.query-service';
@@ -9,6 +9,7 @@ import { PostListOutputDTO } from '../posts/output-dto/post-list.output-dto';
 import { BlogOutputDTO } from './output-dto/blog.output-dto';
 import { BlogListOutputDTO } from './output-dto/blog-list.output-dto';
 import { UserAccessJwtAuthContextDTO } from '../../../../core/guards/access-jwt-auth/dto/user-access-jwt-auth-context.dto';
+import { OptionalAccessJwtAuthGuard } from '../../../../core/guards/optional-access-jwt-auth/optional-access-jwt-auth.guard';
 import { SETTINGS } from '../../../../core/settings/settings';
 import { BlogsControllerSwaggerDecorators } from '../../../../core/swagger/decorators/blog-module/blogs-controller.swagger-decorators';
 import { ExtractUserDataFromRequest } from '../../../user/api/auth/decorators/param-extraction/extract-user-data-from-request.param-decorator';
@@ -44,6 +45,7 @@ export class BlogsController {
 
   /*003. GET-запрос по поиску постов с пагинацией по ID блога, используя query-параметры.*/
   @BlogsControllerSwaggerDecorators.getPostListByBlogId
+  @UseGuards(OptionalAccessJwtAuthGuard)
   @Get(SETTINGS.BLOGS_GET_POST_LIST_BY_BLOG_ID_PATH)
   @HttpCode(HttpStatus.OK)
   public async getPostListByBlogId(
